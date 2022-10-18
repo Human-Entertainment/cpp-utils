@@ -1,8 +1,16 @@
 #include <concepts>
 #include <iostream>
 
+#if (defined(_LIBCPP_STD_VER) && _LIBCPP_STD_VER > 17) || (_MSC_VER > 1700)
 template<typename Number>
-    requires <Number>
+    requires std::integral<Number>
+#else
+/**
+ * @brief Fallback for older cpp versions 
+ * 
+ */
+typedef int Number ; 
+#endif
 class Range
 {
     Number cursor;
