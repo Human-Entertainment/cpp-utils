@@ -54,3 +54,23 @@ public:
 
     friend std::ostream& operator<<(std::ostream &stream, Range var);
 };
+
+#if (defined(_LIBCPP_STD_VER) && _LIBCPP_STD_VER > 17) || (_MSC_VER > 1700)
+template <typename T>
+    requires std::integral<T>
+std::ostream& operator<<(std::ostream &stream, Range<T> var) {
+    stream << "min:\t" << var.min << std::endl;
+    stream << "max:\t" << var.max << std::endl;
+    stream << "cursor:\t" << var.cursor;
+
+    return stream;
+}
+#else
+std::ostream& operator<<(std::ostream &stream, Range var) {
+    stream << "min:\t" << var.min << std::endl;
+    stream << "max:\t" << var.max << std::endl;
+    stream << "cursor:\t" << var.cursor;
+
+    return stream;
+}
+#endif
