@@ -8,6 +8,8 @@ enable_testing()
 
 add_library(observable STATIC src/observable/observer.cpp)
 add_library(range      STATIC src/range/range.cpp)
+add_library(game_loop  STATIC src/game_loop/loop.cpp
+                              src/game_loop/loop.h)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
